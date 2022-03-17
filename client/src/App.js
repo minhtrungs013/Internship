@@ -14,11 +14,16 @@ function App() {
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
+
         >
           Learn React
         </a>
         <p>em yeu cua anh</p>
+        <p>con chym non</p>
+        />
+        Learn React aaaa bbbb
       </header>
+      <p>con chim non</p>
     </div>
   );
 }
