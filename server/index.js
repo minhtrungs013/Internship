@@ -2,14 +2,14 @@ const express = require("express");
 const db = require("./config/db");
 const app = express();
 
-// const authRoute = require("./routes/auth");
+const loginRoute = require("./routers/login");
 
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //ROUTES
-// app.use("/user", authRoute); 
+app.use("/", loginRoute); 
 
 
 app.listen(3000, () => {
