@@ -22,9 +22,7 @@ const loginController = {
           );
           return res.send({ token: token });
         }
-        {
-          return res.status(400).json("Incorrect userName or password");
-        }
+        return res.status(400).json("Incorrect userName or password");
       });
     }
   },
