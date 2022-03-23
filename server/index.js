@@ -11,6 +11,9 @@ app.use(express.json());
 app.use("/", loginRoute);
 app.use("/", emailRoute);
 
+const mentorRouter = require("./routers/mentorRouter");
+app.use("/mentor", mentorRouter);
+
 app.listen(3000, () => {
   console.log("App start success");
 });
