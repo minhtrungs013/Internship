@@ -16,33 +16,38 @@ exports.setup = function (options, seedLink) {
 
 exports.up = function (db, callback) {
   db.createTable(
-    "product",
+    "email",
     {
-      id: { type: "int", primaryKey: true },
-      username: "string",
-      password: "string",
-      address: "string",
-      idSe: {
+      idEmail: {
         type: "int",
         length: 15,
-        FOREIGNKEY: {
-          name: "mentorid_fk",
-          table: "inse",
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      idInternship: {
+        type: "int",
+        length: 15,
+        foreignKey: {
+          name: "pk_eamil_internship",
+          table: "internship",
+          rules: {
+            onDelete: "CASCADE",
+            onUpdate: "RESTRICT",
+          },
           mapping: {
-            idSe: "id",
+            idInternship: "idInternship",
           },
         },
       },
+      userName: "string",
+      password: "string",
     },
     callback
   );
-  db.createTable("inse", {
-    idSe: { type: "int", primaryKey: true, autoIncrement: true },
-    fullName: "string",
-  });
 };
 
 exports.down = function (db) {
+  db.dropTable("email");
   return null;
 };
 
