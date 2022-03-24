@@ -1,11 +1,15 @@
 const express = require("express");
 const app = express();
 
+
 const loginRoute = require("./routers/login");
 const emailRoute = require("./routers/email");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+//internshipcourse
+var internshipcourseRouter = require("./routers/internshipcourseRouter.js");
+app.use("/internshipcourse", internshipcourseRouter);
 
 //ROUTES
 app.use("/", loginRoute);
