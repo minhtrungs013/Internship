@@ -11,7 +11,7 @@ const loginController = {
         password: password,
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "20s" }
+      { expiresIn: "7d" }
     );
   },
   login: (req, res) => {
