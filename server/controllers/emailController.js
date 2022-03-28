@@ -1,10 +1,19 @@
 const emailModel = require("../models/emailModel");
 
 const emailController = {
-  sendeMail: async (req, res) => {
+  sendMail: async (req, res) => {
     try {
       const { email, subject, name, mentor, reviewtime, meetingUrl } = req.body;
-      // Thực hiện gửi email
+      if (
+        !email ||
+        !subject ||
+        !name ||
+        !mentor ||
+        !reviewtime ||
+        !meetingUrl
+      ) {
+        return res.status(400).json("You need to fill in all required fields ");
+      }
       await emailModel.sendMail(
         email,
         subject,

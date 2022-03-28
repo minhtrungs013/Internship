@@ -4,6 +4,16 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
 const loginController = {
+  generateAccessToken: (username, password) => {
+    return jwt.sign(
+      {
+        userName: username,
+        password: password,
+      },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: "20s" }
+    );
+  },
   login: (req, res) => {
     const { username, password } = req.body;
     if (!username) {
@@ -16,11 +26,8 @@ const loginController = {
       const passwordMd5 = md5(req.body.password);
       userModel.get({ username, passwordMd5 }, (response) => {
         if (response.length > 0) {
-          const token = jwt.sign(
-            { idUser: response.idUser },
-            process.env.ACCESS_TOKEN_SECRET
-          );
-          return res.send({ token: token });
+          const accessToken = loginController.generateAccessToken(username,password);
+          return res.status(200).json({ accessToken});
         }
         {
           return res.status(400).json("Incorrect userName or password");

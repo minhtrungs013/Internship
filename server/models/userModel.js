@@ -9,11 +9,11 @@ const user = (users) => {
 
 user.get = (condition, res) => {
   const query = buildQuery(condition);
-  connect.query(query, function (error, results) {
+  connect.query(query, function (error, users) {
     if (error) {
       return res(error);
     }
-    return res(results);
+    return res(users);
   });
 };
 
