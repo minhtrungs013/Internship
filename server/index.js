@@ -1,17 +1,13 @@
 const express = require("express");
-const db = require("./config/db");
 const app = express();
-
-// const authRoute = require("./routes/auth");
-
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //ROUTES
-// app.use("/user", authRoute); 
+const mentorRouter = require("./routers/mentorRouter");
+app.use("/mentor", mentorRouter);
 
-
-app.listen(3000, () => {
-  console.log("chạy rồi đó má");
+app.listen(5000, () => {
+  console.log("App start success");
 });
