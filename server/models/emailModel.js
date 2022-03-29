@@ -1,23 +1,18 @@
 const nodeMailer = require("nodemailer");
-const adminEmail = "dominhtrung2k@gmail.com";
-const adminPassword = "qzhuqsixihqonach";
-//  host của google - gmail
-const mailHost = "smtp.gmail.com";
-// 587 là một cổng tiêu chuẩn và phổ biến trong giao thức SMTP
-const mailPort = 465;
+const dotenv = require("dotenv");
+dotenv.config();
 const sendMail = (email, subject, name, mentor, reviewtime, meetingUrl) => {
-  // Khởi tạo một thằng transporter object sử dụng chuẩn giao thức truyền tải SMTP với các thông tin cấu hình ở trên.
   const transporter = nodeMailer.createTransport({
-    host: mailHost,
-    port: mailPort,
-    secure: true, // nếu các bạn dùng port 465 (smtps) thì để true, còn lại hãy để false cho tất cả các port khác
+    host: process.env.mailHost,
+    port: process.env.mailPort,
+    secure: true,
     auth: {
-      user: adminEmail,
-      pass: adminPassword,
+      user: process.env.adminEmail,
+      pass: process.env.adminPassword,
     },
   });
   const options = {
-    from: adminEmail,
+    from: process.env.adminEmail,
     to: email,
     subject: subject,
     html: `<h3 style="color: red;"> Xin chào ${name}</h3>
@@ -34,7 +29,6 @@ const sendMail = (email, subject, name, mentor, reviewtime, meetingUrl) => {
     </p>
   `,
   };
-  // hàm transporter.sendMail() này sẽ trả về cho chúng ta một Promise
   return transporter.sendMail(options, function (error, info) {
     if (error) {
       console.log(error);
