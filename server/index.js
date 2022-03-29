@@ -1,16 +1,14 @@
 const express = require("express");
 const app = express();
 
-const loginRoute = require("./routers/login");
-const emailRoute = require("./routers/email");
+const mentorRoute = require("./routers/mentorRouter");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //ROUTES
-app.use("/", loginRoute);
-app.use("/", emailRoute);
+app.use("/mentor", mentorRoute);
 
-app.listen(3000, () => {
+app.listen(5000, () => {
   console.log("App start success");
 });
