@@ -1,17 +1,21 @@
 const express = require("express");
-const db = require("./config/db");
 const app = express();
 
-// const authRoute = require("./routes/auth");
+const middlewareController = require("./controllers/middlewareController");
 
+
+const loginRoute = require("./routers/login");
+const emailRoute = require("./routers/email");
+const internshipcourseRoute = require("./routers/internshipcourse");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //ROUTES
-// app.use("/user", authRoute); 
-
+app.use("/", loginRoute);
+app.use("/",middlewareController.verifyToken, emailRoute);
+app.use("/internshipcourse",middlewareController.verifyToken, internshipcourseRoute);
 
 app.listen(3000, () => {
-  console.log("chạy rồi đó má");
+  console.log("App start success");
 });

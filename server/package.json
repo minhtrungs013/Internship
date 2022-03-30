@@ -11,11 +11,21 @@
   "license": "ISC",
   "dependencies": {
     "body": "^5.1.0",
+    "body-parser": "^1.19.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "db-migrate": "^0.11.13",
+    "db-migrate-mysql": "^2.2.0",
+    "db-migrate-pg": "^1.2.2",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "fast-csv": "^4.3.6",
+    "fs": "0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.3.0",
+    "multer": "^1.4.4",
     "mysql": "^2.18.1",
+    "nodemailer": "^6.7.3",
     "nodemon": "^2.0.15",
     "parser": "^0.1.4"
   }
