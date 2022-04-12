@@ -11,6 +11,23 @@ const sendMail = (email, subject, name, mentor, reviewtime, meetingUrl) => {
       pass: process.env.adminPassword,
     },
   });
+  let content = 'BEGIN:VCALENDAR\n' +
+  'VERSION:2.0\n' +
+  'BEGIN:VEVENT\n' +
+  'SUMMARY:Meeting\n' +
+  `DTSTART;VALUE=DATE:20224080\n` +
+  'DTEND;VALUE=DATE:20224090\n' +
+  'LOCATION:Webex \n' +
+  'DESCRIPTION:Description123\n' +
+  'STATUS:CONFIRMED\n' +
+  'SEQUENCE:3\n' +
+  'BEGIN:VALARM\n' +
+  'TRIGGER:-PT10M\n' +
+  'DESCRIPTION:Description123\n' +
+  'ACTION:DISPLAY\n' +
+  'END:VALARM\n' +
+  'END:VEVENT\n' +
+  'END:VCALENDAR';
   const options = {
     from: process.env.adminEmail,
     to: email,
@@ -27,7 +44,13 @@ const sendMail = (email, subject, name, mentor, reviewtime, meetingUrl) => {
       <br>  
       Email: intern-binhdinh@tma.com.vn | Website: www.tma-binhdinh.vn
     </p>
-  `,
+  `, 
+  icalEvent: {
+    contentType: "text/calendar; method=REQUEST; name='meeting.ics';component=VEVENT",
+    content: content,
+    contentEncoding:"Base64",
+    "Content-Class":"urn:content-classes:calendarmessage"
+  }
   };
   return transporter.sendMail(options, function (error, info) {
     if (error) {

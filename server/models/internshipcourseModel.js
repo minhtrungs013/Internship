@@ -1,17 +1,17 @@
 const connect = require("../config/db");
 
-const InternshipCourse = (internshipCourse) => {
-  this.idInternshipCourse = internshipCourse.idInternshipCourse;
-  this.nameCourse = internshipCourse.nameCourse;
-  this.dateStart = internshipCourse.dateStart;
-  this.dateEnd = internshipCourse.dateEnd;
-  this.status = internshipCourse.status;
-  this.kindOfInternship = internshipCourse.kindOfInternship;
+const Internshipcourse = (internshipcourse) => {
+  this.idInternshipCourse = internshipcourse.idInternshipCourse;
+  this.nameCoure = internshipcourse.nameCoure;
+  this.dateStart = internshipcourse.dateStart;
+  this.dateEnd = internshipcourse.dateEnd;
+  this.status = internshipcourse.status;
+  this.kindOfInternship = internshipcourse.kindOfInternship;
 };
 
-InternshipCourse.get_all = (result) => {
+Internshipcourse.getNameInternshipcourse = (result) => {
   connect.query(
-    "SELECT internshipcourse.nameCourse FROM internshipcourse",
+    "SELECT * FROM internshipcourse",
     (err, internshipcourse) => {
       if (err) {
         result(null);
@@ -21,31 +21,47 @@ InternshipCourse.get_all = (result) => {
     }
   );
 };
-InternshipCourse.getByID = (id, result) => {
+
+Internshipcourse.getIdInternshipcourse = (id, result) => {
   connect.query(
-    "SELECT * FROM internshipcourse WHERE idInternshipCource = ?",
+    "SELECT nameCoure FROM internshipcourse WHERE idInternshipCourse = ?",
     id,
-    (err, internshipCourse) => {
+    (err, internshipcourse) => {
       if (err) {
         result(null);
       } else {
-        result(internshipCourse);
-      }
-    }
-  );
-};
-InternshipCourse.create = (data, result) => {
-  connect.query(
-    "INSERT INTO internshipcourse SET ?",
-    data,
-    (err, internshipCourse) => {
-      if (err) {
-        result(null);
-      } else {
-        result({ idInternshipCourse: internshipCourse.insertId, ...data });
+        result(internshipcourse);
       }
     }
   );
 };
 
-module.exports = InternshipCourse;
+Internshipcourse.createInternshipcourse = (data, result) => {
+  connect.query(
+    "INSERT INTO internshipcourse SET ?",
+    data,
+    (err, internshipcourse) => {
+      if (err) {
+        result(null);
+      } else {
+        result({ idInternshipCourse: internshipcourse.insertId, ...data });
+      }
+    }
+  );
+};
+
+Internshipcourse.DeleteInternshipcourse = (id, result) => {
+  connect.query(
+    "DELETE FROM internshipcourse WHERE idInternshipCourse = ?",
+    id,
+    (err, internshipcourse) => {
+      if (err) {
+        result(null);
+      } else {
+        result(internshipcourse);
+      }
+    }
+  );
+};
+
+module.exports = Internshipcourse;

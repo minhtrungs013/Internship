@@ -24,7 +24,7 @@ const loginController = {
     }
     {
       const passwordMd5 = md5(req.body.password);
-      userModel.get({ username, passwordMd5 }, (response) => {
+      userModel.getUser({ username, passwordMd5 }, (response) => {
         if (response.length > 0) {
           const accessToken = loginController.generateAccessToken(username,password);
           return res.status(200).json({ accessToken});

@@ -7,6 +7,7 @@ const middlewareController = {
     if (token) {
       const accessToken = token.split(" ")[1];
       jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, users) => {
+        console.log(users)
         if (err) {
           return res.status(403).json("you need to login again");
         }

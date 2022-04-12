@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
+app.use(cors());
 
-const middlewareController = require("./controllers/middlewareController");
 
 
 const loginRoute = require("./routers/login");
@@ -13,9 +14,9 @@ app.use(express.json());
 
 //ROUTES
 app.use("/", loginRoute);
-app.use("/",middlewareController.verifyToken, emailRoute);
-app.use("/internshipcourse",middlewareController.verifyToken, internshipcourseRoute);
+app.use("/", emailRoute);
+app.use("/internshipcourse", internshipcourseRoute);
 
-app.listen(3000, () => {
+app.listen(5000, () => {
   console.log("App start success");
 });

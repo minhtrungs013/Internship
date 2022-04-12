@@ -7,7 +7,7 @@ const user = (users) => {
   this.email = users.email;
 };
 
-user.get = (condition, res) => {
+user.getUser = (condition, res) => {
   const query = buildQuery(condition);
   connect.query(query, function (error, users) {
     if (error) {
